@@ -1,6 +1,5 @@
 PTOP                     = $(shell pwd)
-VALID_TARGETS            = dummy_project_name \
-			csp_ae_1024MB
+VALID_TARGETS            = dummy_project_name
 VIVADO_REQI_VERSION      ?= 2017.1
 
 CLEAN_TARGETS            = $(VALID_TARGETS) \
@@ -18,7 +17,6 @@ CLEAN_BDS                = $(VALID_TARGETS)
 TCL_PATH                 = $(PTOP)/src/tcl
 OUTPUT_PATH              = $(PTOP)/src/outputFiles
 VIVADO_CMD               = vivado -mode batch -source
-VIVADO_REQI_VERSION      = 2017.1
 VIVADO_REQI_VERSION_STR  = v$(VIVADO_REQI_VERSION)
 VIVADO_HOST_VERSION_STR  = $(shell vivado -version | awk '{print $$2}' | head -n 1)
 VIVADO_DEF_BASE_PATH     = /opt/Xilinx/Vivado/$(VIVADO_REQI_VERSION)
