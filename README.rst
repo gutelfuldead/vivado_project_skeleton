@@ -53,13 +53,13 @@ Tree Structure
 |        ├── Makefile
 |        ├── README.rst
 |        └── src
-|            ├── bd
-|            ├── ip_catalog
-|            ├── outputFiles
-|            ├── tcl
-|            │   ├── build_bitstream.tcl
-|            │   └── proj_gen.tcl
-|            └── xdc
+|        |    ├── bd
+|        |    ├── ip_catalog
+|        |    ├── outputFiles
+|        |    ├── tcl
+|        |    │   ├── build_bitstream.tcl
+|        |    │   └── proj_gen.tcl
+|        |    └── xdc
 |
 |        6 directories, 4 files
 
