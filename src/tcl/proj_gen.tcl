@@ -1,9 +1,11 @@
 #*****************************************************************************************
-# proj_gen.tcl : creates a vivado project from a bd.tcl, ip_library, and xdc constraints
+# proj_gen.tcl : creates a vivado project from ./ip_library, ./bd/$(design_name).tcl
+# and ./xdc/$(design_name)*.xdc
+# Requires argument for the design_name
 #*****************************************************************************************
 
 if { $::argc <= 0 } {
-	puts "ERROR: must provide project name ..."
+	puts "ERROR: usage proj_gen.tcl -tclargs design_name"
 	return 1
 }
 set design_name [lindex $argv 0]
