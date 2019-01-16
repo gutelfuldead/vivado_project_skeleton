@@ -49,7 +49,8 @@ To generate a project and build the bitstream run ::
 Tree Structure
 ==============
 
-::
+tree structure ::
+       
         .
         ├── Makefile
         ├── README.rst
