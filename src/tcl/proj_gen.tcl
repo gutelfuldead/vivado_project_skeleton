@@ -1,19 +1,6 @@
 #*****************************************************************************************
-# build.tcl: Tcl script for re-creating project 'microzed_base'
+# proj_gen.tcl : creates a vivado project from a bd.tcl, ip_library, and xdc constraints
 #*****************************************************************************************
-# Check the version of Vivado used
-# set version_required "2017.1"
-# set ver [lindex [split $::env(XILINX_VIVADO) /] 3]
-# if {![string equal $ver $version_required]} {
-#   puts "###############################"
-#   puts "### Failed to build project ###"
-#   puts "###############################"
-#   puts "This project was designed for use with Vivado $version_required."
-#   puts "You are using Vivado $ver. Please install Vivado $version_required,"
-#   puts "or download the project sources from a commit of the Git repository"
-#   puts "that was intended for your version of Vivado ($ver)."
-#   return
-# }
 
 if { $::argc <= 0 } {
 	puts "ERROR: must provide project name ..."
