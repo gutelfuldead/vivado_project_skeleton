@@ -4,6 +4,12 @@ Xilinx Vivado Project Version Control Skeleton
 
 Reference tree structure for source controlling Xilinx Vivado projects.
 
+Includes,
+
+- Makefile : to handle checking proper versions and automating build runs
+- argument driven tcl scripts to generate bd from a tcl, create bitstream,
+  and generate output run logs
+
 TODO For all New Projects
 =========================
 
@@ -49,8 +55,8 @@ To generate a project and build the bitstream run ::
 Tree Structure
 ==============
 
-tree structure ::
-       
+files and directories ::
+
         .
         ├── Makefile
         ├── README.rst
