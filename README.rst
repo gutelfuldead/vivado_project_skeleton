@@ -122,11 +122,21 @@ xdc
 ---
 
 This contains the constraints for the project. Currently proj_gen.tcl will only
-pull in the constraints that have the same project name prefix. IE if the
-project is test_build then it will glob import test_build*.xdc
+pull in the constraints that have the same project name prefix.
 
-For example::
+For example, if the following files are present ::
 
         dummy_project_1.xdc
+        dummy_project_1_timing.xdc
+        dummy_project_1_io.xdc
         dummy_project_2.xdc
+
+and ``make build TARGET=dummy_project_1`` is ran then the project will be generated
+with ::
+
+        dummy_project_1.xdc
+        dummy_project_1_timing.xdc
+        dummy_project_1_io.xdc
+
+automatically added to the constr_1 set.
 
