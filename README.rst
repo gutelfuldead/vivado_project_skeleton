@@ -49,20 +49,19 @@ To generate a project and build the bitstream run ::
 Tree Structure
 ==============
 
-::
-        .
-        ├── Makefile
-        ├── README.rst
-        └── src
-            ├── bd
-            ├── ip_catalog
-            ├── outputFiles
-            ├── tcl
-            │   ├── build_bitstream.tcl
-            │   └── proj_gen.tcl
-            └── xdc
-
-        6 directories, 4 files
+|        .
+|        ├── Makefile
+|        ├── README.rst
+|        └── src
+|            ├── bd
+|            ├── ip_catalog
+|            ├── outputFiles
+|            ├── tcl
+|            │   ├── build_bitstream.tcl
+|            │   └── proj_gen.tcl
+|            └── xdc
+|
+|        6 directories, 4 files
 
 bd
 --
