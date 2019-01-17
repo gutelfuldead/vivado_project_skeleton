@@ -4,6 +4,10 @@ Xilinx Vivado Project Version Control Skeleton
 
 Reference tree structure for source controlling Xilinx Vivado projects.
 
+Tested in Vivado versions
+- 2017.1
+- 2018.1
+
 Includes,
 
 - Makefile : to handle checking proper versions and automating build runs
