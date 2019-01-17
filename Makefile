@@ -4,6 +4,7 @@ VIVADO_REQI_VERSION      ?= 2017.1
 
 CLEAN_TARGETS            = $(VALID_TARGETS) \
 			.Xil \
+			NA \
 			*.layout \
 			*.debug \
 			*.mif \
