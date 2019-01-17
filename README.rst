@@ -136,7 +136,7 @@ For example, if the following files are present ::
         dummy_project_1_io.xdc
         dummy_project_2.xdc
 
-and ``make build TARGET=dummy_project_1`` is ran then the project will be generated
+when ``make build TARGET=dummy_project_1`` is ran then the project will be generated
 with ::
 
         dummy_project_1.xdc
