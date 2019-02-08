@@ -45,7 +45,7 @@ ifeq ($(filter $(TARGET),$(VALID_TARGETS)),)
 endif
 
 build: checkValidProjName checkVersion
-	$(VIVADO_CMD) $(TCL_PATH)/proj_gen.tcl -tclargs $(TARGET) #>> $(TARGET).log
+	$(VIVADO_CMD) $(TCL_PATH)/proj_gen.tcl -tclargs $(TARGET)
 	$(info )
 	$(info )
 	$(info vivado ./$(TARGET)/$(TARGET).xpr)
@@ -78,4 +78,4 @@ help:
 	$(info make clean-all)
 	$(info $(TAB)To remove all auto-generated files -- including the project)
 
-.PHONY: clean-all help
+.PHONY: clean-all help checkVersion checkVivadoPath checkValidProjName build bitstream clean-targets
