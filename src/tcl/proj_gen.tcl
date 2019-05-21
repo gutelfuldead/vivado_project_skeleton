@@ -31,7 +31,8 @@ set_property -name "default_lib" -value "xil_defaultlib" -objects $obj
 set_property -name "ip_cache_permissions" -value "read write" -objects $obj
 set_property -name "ip_output_repo" -value "$proj_dir/$design_name.cache/ip" -objects $obj
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
-set_property -name "simulator_language" -value "Mixed" -objects $obj
+set_property -name "simulator_language" -value "VHDL" -objects $obj
+set_property -name "target_language" -value "VHDL" -objects $obj 
 
 # Create 'sources_1' fileset (if not found)
 if {[string equal [get_filesets -quiet sources_1] ""]} {
