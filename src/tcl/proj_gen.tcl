@@ -127,8 +127,7 @@ source $origin_dir/src/bd/$design_name.tcl
 
 # Generate the wrapper
 make_wrapper -files [get_files *${design_name}.bd] -top
-add_files -norecurse ${design_name}/${design_name}.srcs/sources_1/bd/${design_name}/hdl/${design_name}_wrapper.v
-# add_files -norecurse ${design_name}/hdl/${design_name}_wrapper.v
+add_files -norecurse ${design_name}/${design_name}.srcs/sources_1/bd/${design_name}/hdl/${design_name}_wrapper.vhd
 
 # Update the compile order
 update_compile_order -fileset sources_1
