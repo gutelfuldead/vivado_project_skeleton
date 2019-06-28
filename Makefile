@@ -60,7 +60,9 @@ bitstream: checkValidProjName checkVersion
 	$(VIVADO_CMD) $(BITSTREAM_TCL) -tclargs $(TARGET) $(OUTPUT_PATH)
 	cp $(TARGET)/$(TARGET).runs/impl_1/$(TARGET)_wrapper.sysdef $(OUTPUT_PATH)/$(TARGET).hdf
 	cp $(TARGET)/$(TARGET).runs/impl_1/$(TARGET)_wrapper.bit $(OUTPUT_PATH)/$(TARGET).bit
-	cp $(TARGET)/$(TARGET).runs/impl_1/$(TARGET)_wrapper.ltx $(OUTPUT_PATH)/$(TARGET).ltx
+	if [ -f $(TARGET)/$(TARGET).runs/impl_1/$(TARGET)_wrapper.ltx ]; then \
+		cp $(TARGET)/$(TARGET).runs/impl_1/$(TARGET)_wrapper.ltx $(OUTPUT_PATH)/$(TARGET).ltx; \
+	fi
 
 clean-targets:
 	rm -rf $(CLEAN_TARGETS)
