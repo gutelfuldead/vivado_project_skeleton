@@ -43,6 +43,21 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 set obj [get_filesets sources_1]
 set_property "ip_repo_paths" "[file normalize "$origin_dir/src/ip_catalog"]" $obj
 
+# add custom vhd files to the project
+set pattern $origin_dir/src/hdl/*.vhd
+set vhd_files [glob -nocomplain -- $pattern]
+switch -exact [llength $vhd_files]] {
+	0 {error "no files found matching $pattern"}
+	default {
+		for {set i 0} {$i < [llength $vhd_files]} {incr i} {
+			set tmp [lindex $vhd_files $i]
+			puts $tmp
+			set file "[file normalize $tmp]"
+			set file_added [add_files -norecurse -fileset $obj $file]
+		}
+	}
+}
+
 # Rebuild user ip_repo's index before adding any source files
 update_ip_catalog -rebuild
 

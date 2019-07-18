@@ -4,6 +4,7 @@ VIVADO_REQI_VERSION      ?= 2017.1
 
 CLEAN_TARGETS            = $(VALID_TARGETS) \
 			.Xil \
+			ip_repo \
 			NA \
 			*.layout \
 			*.debug \
@@ -45,7 +46,7 @@ ifeq ($(filter $(TARGET),$(VALID_TARGETS)),)
 endif
 
 build: checkValidProjName checkVersion
-	$(VIVADO_CMD) $(TCL_PATH)/proj_gen.tcl -tclargs $(TARGET)
+	$(VIVADO_CMD) $(TCL_PATH)/proj_gen.tcl -tclargs $(TARGET) >> $(TARGET).log
 	$(info )
 	$(info )
 	$(info vivado ./$(TARGET)/$(TARGET).xpr)
@@ -58,8 +59,8 @@ build: checkValidProjName checkVersion
 
 bitstream: checkValidProjName checkVersion
 	$(VIVADO_CMD) $(BITSTREAM_TCL) -tclargs $(TARGET) $(OUTPUT_PATH)
-	cp $(TARGET)/$(TARGET).runs/impl_1/$(TARGET)_wrapper.sysdef $(OUTPUT_PATH)/$(TARGET).hdf
-	cp $(TARGET)/$(TARGET).runs/impl_1/$(TARGET)_wrapper.bit $(OUTPUT_PATH)/$(TARGET).bit
+	cp $(TARGET)/$(TARGET).runs/impl_1/*.sysdef $(OUTPUT_PATH)/$(TARGET).hdf
+	cp $(TARGET)/$(TARGET).runs/impl_1/*.bit $(OUTPUT_PATH)/$(TARGET).bit
 	if [ -f $(TARGET)/$(TARGET).runs/impl_1/$(TARGET)_wrapper.ltx ]; then \
 		cp $(TARGET)/$(TARGET).runs/impl_1/$(TARGET)_wrapper.ltx $(OUTPUT_PATH)/$(TARGET).ltx; \
 	fi

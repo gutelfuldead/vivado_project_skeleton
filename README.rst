@@ -4,10 +4,10 @@ Xilinx Vivado Project Version Control Skeleton
 
 Reference tree structure for source controlling Xilinx Vivado projects.
 
-Tested in Vivado versions
+Tested in Vivado Versions ::
 
-- 2017.1
-- 2018.1
+        2017.1
+        2018.1
 
 Includes,
 
@@ -67,6 +67,7 @@ files and directories ::
         ├── README.rst
         └── src
             ├── bd
+            ├── hdl 
             ├── ip_catalog
             ├── outputFiles
             ├── tcl
@@ -77,8 +78,8 @@ files and directories ::
         6 directories, 4 files
 
 
-src/bd
-------
+bd
+--
 
 This folder should contain the tcl file used to generate the block diagram
 For example::
@@ -91,20 +92,27 @@ it may be necessary to update the origin variable inside ::
 
          set origin_dir .
 
-src/ip_catalog
---------------
+hdl
+---
+
+This folder is used for standalone .vhd file that need to be brought into the
+project. They will be imported into the top level of all projects automatically
+through the proj_gen.tcl script.
+
+ip_catalog
+----------
 
 This folder should contain all IP that is used in the design; svn externals
 should be placed here.
 
-src/output_files
-----------------
+output_files
+------------
 
 This folder is where the bitstream, hdf, and various reports are placed after
 the design is finished running.
 
-src/tcl
--------
+tcl
+---
 
 This folder contains two tcl scripts to generate the projects
 
@@ -123,8 +131,8 @@ Example using a zynq 7035 part with no specific board ::
 
         set_property -name "part" -value "xc7z035fbg676-2" -objects $obj
 
-src/xdc
--------
+xdc
+---
 
 This contains the constraints for the project. Currently proj_gen.tcl will only
 pull in the constraints that have the same project name prefix.
@@ -136,7 +144,7 @@ For example, if the following files are present ::
         dummy_project_1_io.xdc
         dummy_project_2.xdc
 
-when ``make build TARGET=dummy_project_1`` is ran then the project will be generated
+and ``make build TARGET=dummy_project_1`` is ran then the project will be generated
 with ::
 
         dummy_project_1.xdc
