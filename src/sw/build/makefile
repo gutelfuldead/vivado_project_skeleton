@@ -1,5 +1,7 @@
 CLEAN_TARGETS  = app1 \
 		 bsp1 \
+		 fsbl1 \
+		 fsbl1_bsp \
 		 hw1 \
 		 .Xil \
 		 SDK.log \
