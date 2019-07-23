@@ -1,15 +1,18 @@
-CLEAN_TARGETS=app1 \
-	      bsp1 \
-	      hw1 \
-	      .Xil \
-	      SDK.log \
-	      .metadata \
-	      RemoteSystemsTempFiles \
-	      .sdk
+CLEAN_TARGETS  = app1 \
+		 bsp1 \
+		 hw1 \
+		 .Xil \
+		 SDK.log \
+		 .metadata \
+		 RemoteSystemsTempFiles \
+		 .sdk
+
+NULL          := 
+TAB           := $(NULL)	$(NULL)
+
+TARGET        ?= dummy_project_name
 
 all: clean-all build
-
-TARGET ?= dummy_project_name
 
 build:
 	hw_server &
@@ -20,13 +23,13 @@ clean-all:
 
 help:
 	$(info make)
-	$(info automatically cleans, builds, and loads hardware)
+	$(info $(TAB)automatically cleans, builds, and loads hardware)
 	$(info )
 	$(info make build)
-	$(info builds the application and loads a locally connected zedboard via jtag)
+	$(info $(TAB)builds the application and loads a locally connected zedboard via jtag)
 	$(info )
 	$(info make clean-all)
-	$(info cleans all auto-gen files)
+	$(info $(TAB)cleans all auto-gen files)
 	$(info )
 
 .PHONY: build clean-all help
