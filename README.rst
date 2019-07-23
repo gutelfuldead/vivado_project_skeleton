@@ -27,6 +27,9 @@ TODO For all New Projects
 3. Update Makefile with project names
         as described in Makefile Section
 
+4. (if making a baremetal application) update ./sw/build/build.tcl with
+        whatever flags are required for the compiler
+
 Makefile
 ========
 

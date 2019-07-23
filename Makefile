@@ -28,7 +28,8 @@ BITSTREAM_TCL           =  $(TCL_PATH)/build_bitstream.tcl
 NULL                    := 
 TAB                     := $(NULL)		$(NULL)
 
-TARGET                  ?= dummy_project_name
+# default target is the first in the VALID_TARGETS array
+TARGET                  ?= $(word 1,$(VALID_TARGETS))
 
 export TARGET
 
