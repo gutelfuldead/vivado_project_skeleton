@@ -23,6 +23,7 @@ VIVADO_REQI_VERSION_STR =  v$(VIVADO_REQI_VERSION)
 VIVADO_HOST_VERSION_STR =  $(shell vivado -version | awk '{print $$2}' | head -n 1)
 VIVADO_DEF_BASE_PATH    =  /opt/Xilinx/Vivado/$(VIVADO_REQI_VERSION)
 VIVADO_BASE_PATH        ?= $(VIVADO_DEF_BASE_PATH)
+VIVADO_CABLE_DRIVR_PATH = $(VIVADO_BASE_PATH)/data/xicom/cable_drivers/lin64/install_script/install_drivers
 BITSTREAM_TCL           =  $(TCL_PATH)/build_bitstream.tcl
 
 NULL                    := 
@@ -34,6 +35,15 @@ TARGET                  ?= $(word 1,$(VALID_TARGETS))
 export TARGET
 
 all: help
+
+initEnv: checkVivadoPath
+	$(info $(TAB)Sourcing Vivado Xilinx Environment...)
+	- $(shell cd $(VIVADO_BASE_PATH) && sudo ./settings64.sh && cd $(PTOP))
+	$(info $(TAB)Running script to install Digilent Cable Drivers...)
+	- $(shell cd $(VIVADO_CABLE_DRIVR_PATH) && sudo ./install_drivers && cd $(PTOP))
+	$(info)
+	$(info Error is normal; restart machine)
+	$(info)
 
 checkVersion:
 ifneq ($(VIVADO_HOST_VERSION_STR),$(VIVADO_REQI_VERSION_STR))
@@ -93,5 +103,9 @@ help:
 	$(info )
 	$(info make sw)
 	$(info $(TAB)Generates a baremetal sw app for the generated hdf)
+	$(info )
+	$(info make initEnv VIVADO_BASE_PATH=/opt/Xilinx/Vivado/2017.1)
+	$(info $(TAB)sources digilent cable drivers)
+	$(info )
 
-.PHONY: clean-all help checkVersion checkVivadoPath checkValidProjName build bitstream clean-targets
+.PHONY: clean-all help checkVersion checkVivadoPath checkValidProjName build bitstream clean-targets sw initEnv
