@@ -1,8 +1,8 @@
-PTOP                     = $(shell pwd)
-VALID_TARGETS            = dummy_project_name
-VIVADO_REQI_VERSION      ?= 2017.1
+PTOP                    =  $(shell pwd)
+VALID_TARGETS           =  dummy_project_name
+VIVADO_REQI_VERSION     ?= 2017.1
 
-CLEAN_TARGETS            = $(VALID_TARGETS) \
+CLEAN_TARGETS           =  $(VALID_TARGETS) \
 			.Xil \
 			ip_repo \
 			NA \
@@ -15,18 +15,22 @@ CLEAN_TARGETS            = $(VALID_TARGETS) \
 			*.zip \
 			*.str \
 			*.txt
-CLEAN_BDS                = $(VALID_TARGETS)
-TCL_PATH                 = $(PTOP)/src/tcl
-OUTPUT_PATH              = $(PTOP)/src/outputFiles
-VIVADO_CMD               = vivado -mode batch -source
-VIVADO_REQI_VERSION_STR  = v$(VIVADO_REQI_VERSION)
-VIVADO_HOST_VERSION_STR  = $(shell vivado -version | awk '{print $$2}' | head -n 1)
-VIVADO_DEF_BASE_PATH     = /opt/Xilinx/Vivado/$(VIVADO_REQI_VERSION)
+CLEAN_BDS               =  $(VALID_TARGETS)
+TCL_PATH                =  $(PTOP)/src/tcl
+OUTPUT_PATH             =  $(PTOP)/src/outputFiles
+VIVADO_CMD              =  vivado -mode batch -source
+VIVADO_REQI_VERSION_STR =  v$(VIVADO_REQI_VERSION)
+VIVADO_HOST_VERSION_STR =  $(shell vivado -version | awk '{print $$2}' | head -n 1)
+VIVADO_DEF_BASE_PATH    =  /opt/Xilinx/Vivado/$(VIVADO_REQI_VERSION)
 VIVADO_BASE_PATH        ?= $(VIVADO_DEF_BASE_PATH)
-BITSTREAM_TCL            = $(TCL_PATH)/build_bitstream.tcl
+BITSTREAM_TCL           =  $(TCL_PATH)/build_bitstream.tcl
 
-NULL :=
-TAB  := $(NULL)		$(NULL)
+NULL                    := 
+TAB                     := $(NULL)		$(NULL)
+
+TARGET                  ?= dummy_project_name
+
+export TARGET
 
 all: help
 
@@ -69,6 +73,10 @@ clean-targets:
 	rm -rf $(CLEAN_TARGETS)
 
 clean-all: clean-targets
+	$(MAKE) -C ./src/sw/build clean-all
+
+sw: checkValidProjName checkVersion
+	$(MAKE) -C ./src/sw/build TARGET=$(TARGET)
 
 help:
 	$(info ====)
@@ -81,5 +89,8 @@ help:
 	$(info )
 	$(info make clean-all)
 	$(info $(TAB)To remove all auto-generated files -- including the project)
+	$(info )
+	$(info make sw)
+	$(info $(TAB)Generates a baremetal sw app for the generated hdf)
 
 .PHONY: clean-all help checkVersion checkVivadoPath checkValidProjName build bitstream clean-targets

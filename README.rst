@@ -67,15 +67,20 @@ files and directories ::
         ├── README.rst
         └── src
             ├── bd
-            ├── hdl 
+            ├── hdl
             ├── ip_catalog
             ├── outputFiles
+            ├── sw
+            │   ├── build
+            │   │   ├── build.tcl
+            │   │   └── makefile
+            │   └── src
             ├── tcl
             │   ├── build_bitstream.tcl
             │   └── proj_gen.tcl
             └── xdc
 
-        6 directories, 4 files
+        10 directories, 6 files
 
 
 bd
@@ -110,6 +115,20 @@ output_files
 
 This folder is where the bitstream, hdf, and various reports are placed after
 the design is finished running.
+
+sw
+--
+
+This folder is where baremetal applications are generated and build. 
+The complete source code for the baremetal application (include linker and
+main) should be placed in ./sw/src
+
+The top level makefile supports the ``make sw TARGET=projName`` option to then
+create the application using the target hdf located in outputFiles, create a
+BSP, and load a local zynq target with the application.
+
+Per project changes such as C/C++ build settings should be modified in the
+./sw/build/build.tcl script.
 
 tcl
 ---
