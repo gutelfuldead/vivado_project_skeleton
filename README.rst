@@ -27,10 +27,13 @@ TODO For all New Projects
 3. Update Makefile with project names
         as described in Makefile Section
 
-4. (if making a baremetal application) update ./sw/build/cSettings.tcl with
+4. (if using a custom hardware platform) place board files into 
+        ./src/customBoards
+
+5. (if making a baremetal application) update ./sw/build/cSettings.tcl with
         whatever flags are required for the compiler
 
-5. (if making a baremetal application) place complete source code in
+6. (if making a baremetal application) place complete source code in
         ./src/sw/src
 
 Makefile
