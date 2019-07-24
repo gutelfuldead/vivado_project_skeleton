@@ -24,6 +24,7 @@ VIVADO_HOST_VERSION_STR =  $(shell vivado -version | awk '{print $$2}' | head -n
 VIVADO_DEF_BASE_PATH    =  /opt/Xilinx/Vivado/$(VIVADO_REQI_VERSION)
 VIVADO_BASE_PATH        ?= $(VIVADO_DEF_BASE_PATH)
 VIVADO_CABLE_DRIVR_PATH = $(VIVADO_BASE_PATH)/data/xicom/cable_drivers/lin64/install_script/install_drivers
+VIVADO_BOARD_PATH       = $(VIVADO_BASE_PATH)/data/boards/board_parts
 BITSTREAM_TCL           =  $(TCL_PATH)/build_bitstream.tcl
 
 NULL                    := 
@@ -37,6 +38,8 @@ export TARGET
 all: help
 
 initEnv: checkVivadoPath
+	$(info Copying custom board files to Vivado...)
+	$(shell sudo cp -r ./src/customBoardFiles $(VIVADO_BOARD_PATH))
 	$(info $(TAB)Sourcing Vivado Xilinx Environment...)
 	- $(shell cd $(VIVADO_BASE_PATH) && sudo ./settings64.sh && cd $(PTOP))
 	$(info $(TAB)Running script to install Digilent Cable Drivers...)

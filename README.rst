@@ -73,6 +73,7 @@ files and directories ::
         ├── README.rst
         └── src
             ├── bd
+            ├── customBoards
             ├── hdl
             ├── ip_catalog
             ├── outputFiles
@@ -90,8 +91,7 @@ files and directories ::
             │   └── proj_gen.tcl
             └── xdc
 
-        10 directories, 10 files
-
+        11 directories, 10 files
 
 bd
 --
@@ -106,6 +106,12 @@ After creating the block diagram tcl script from Vivado
 it may be necessary to update the origin variable inside ::
 
          set origin_dir .
+
+customBoards
+------------
+
+Place custom xilinx board design files here. Running the ``make initEnv`` target
+will then update the local Vivado installation with these files.
 
 hdl
 ---
