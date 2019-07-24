@@ -1,8 +1,8 @@
-CLEAN_TARGETS  = app1 \
-		 bsp1 \
-		 fsbl1 \
-		 fsbl1_bsp \
-		 hw1 \
+CLEAN_TARGETS  = app \
+		 bsp \
+		 fsbl \
+		 fsbl_bsp \
+		 hw \
 		 .Xil \
 		 SDK.log \
 		 .metadata \
@@ -27,8 +27,8 @@ load:
 	xsct ./load.tcl $(TARGET)
 
 bin-gen:
-	mv ./hw1/*.bit ./hw1/system.bit
-	mv ./app1/Debug/*.elf ./app1/Debug/app.elf
+	cp ./hw/*.bit ./hw/system.bit
+	cp ./app/Debug/*.elf ./app/Debug/app.elf
 	bootgen -image app.bif -o $(TARGET).bin -w
 
 flash-zed:

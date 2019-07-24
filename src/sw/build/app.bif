@@ -1,6 +1,6 @@
 the_ROM_image:
 {
-  [bootloader]fsbl1/Debug/fsbl1.elf
-  [checksum=md5]hw1/system.bit
-  [checksum=md5]app1/Debug/app.elf
+  [bootloader]fsbl/Debug/fsbl.elf
+  [checksum=md5]hw/system.bit
+  [checksum=md5]app/Debug/app.elf
 }
