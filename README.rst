@@ -27,8 +27,11 @@ TODO For all New Projects
 3. Update Makefile with project names
         as described in Makefile Section
 
-4. (if making a baremetal application) update ./sw/build/build.tcl with
+4. (if making a baremetal application) update ./sw/build/cSettings.tcl with
         whatever flags are required for the compiler
+
+5. (if making a baremetal application) place complete source code in
+        ./src/sw/src
 
 Makefile
 ========
@@ -75,15 +78,19 @@ files and directories ::
             ├── outputFiles
             ├── sw
             │   ├── build
+            │   │   ├── app.bif
             │   │   ├── build.tcl
-            │   │   └── makefile
+            │   │   ├── cSettings.tcl
+            │   │   ├── load.tcl
+            │   │   ├── makefile
+            │   │   └── rebuild.tcl
             │   └── src
             ├── tcl
             │   ├── build_bitstream.tcl
             │   └── proj_gen.tcl
             └── xdc
 
-        10 directories, 6 files
+        10 directories, 10 files
 
 
 bd
@@ -126,12 +133,10 @@ This folder is where baremetal applications are generated and build.
 The complete source code for the baremetal application (include linker and
 main) should be placed in ./sw/src
 
-The top level makefile supports the ``make sw TARGET=projName`` option to then
-create the application using the target hdf located in outputFiles, create a
-BSP, and load a local zynq target with the application.
+see ``make help`` for details on using this feature.
 
 Per project changes such as C/C++ build settings should be modified in the
-./sw/build/build.tcl script.
+./sw/build/cSettings.tcl script.
 
 tcl
 ---

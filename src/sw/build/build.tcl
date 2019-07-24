@@ -16,12 +16,10 @@ createapp -name fsbl -app {Zynq FSBL} -hwproject hw -proc ps7_cortexa9_0
 
 # create empty app
 createapp -name app -app {Empty Application} -bsp bsp -hwproject hw -proc ps7_cortexa9_0
-importsources -name app -path ../src -linker-script   
+importsources -name app -path ../src   
 
 # add compiler symbols
-# configapp -app app define-compiler-symbols CUSTOM_SYMBOL
-configapp -app app linker-script ../src/lscript.ld
-configapp -app app include-path ../src/some-folder
+source cSettings.tcl
 
 # build the project
 projects -build

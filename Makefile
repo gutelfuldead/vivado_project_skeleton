@@ -27,7 +27,7 @@ VIVADO_CABLE_DRIVR_PATH = $(VIVADO_BASE_PATH)/data/xicom/cable_drivers/lin64/ins
 BITSTREAM_TCL           =  $(TCL_PATH)/build_bitstream.tcl
 
 NULL                    := 
-TAB                     := $(NULL)		$(NULL)
+TAB                     := $(NULL)	$(NULL)
 
 # default target is the first in the VALID_TARGETS array
 TARGET                  ?= $(word 1,$(VALID_TARGETS))
@@ -86,8 +86,17 @@ clean-targets:
 clean-all: clean-targets
 	$(MAKE) -C ./src/sw/build clean-all
 
-sw: checkValidProjName checkVersion
-	$(MAKE) -C ./src/sw/build TARGET=$(TARGET)
+sw-build: checkValidProjName checkVersion
+	$(MAKE) -C ./src/sw/build build TARGET=$(TARGET)
+
+sw-rebuild: checkValidProjName checkVersion
+	$(MAKE) -C ./src/sw/build rebuild TARGET=$(TARGET)
+
+sw-load: checkValidProjName checkVersion
+	$(MAKE) -C ./src/sw/build load TARGET=$(TARGET)
+
+sw-flash-zed: checkValidProjName checkVersion
+	$(MAKE) -C ./src/sw/build flash-zed TARGET=$(TARGET)
 
 help:
 	$(info ====)
@@ -101,11 +110,22 @@ help:
 	$(info make clean-all)
 	$(info $(TAB)To remove all auto-generated files -- including the project)
 	$(info )
-	$(info make sw)
-	$(info $(TAB)Generates a baremetal sw app for the generated hdf)
+	$(info make sw-build)
+	$(info $(TAB)Generates a baremetal sw app for the local ./src/outputFiles/[TARGET].hdf)
+	$(info )
+	$(info make sw-rebuild)
+	$(info $(TAB)rebuilds only the source code for the software application)
+	$(info )
+	$(info make sw-load)
+	$(info $(TAB)loads the software on a zynq platform)
+	$(info )
+	$(info make sw-flash-zed)
+	$(info $(TAB)flashes the software on a zedboard)
 	$(info )
 	$(info make initEnv VIVADO_BASE_PATH=/opt/Xilinx/Vivado/2017.1)
 	$(info $(TAB)sources digilent cable drivers)
 	$(info )
 
-.PHONY: clean-all help checkVersion checkVivadoPath checkValidProjName build bitstream clean-targets sw initEnv
+.PHONY: clean-all help checkVersion checkVivadoPath checkValidProjName build bitstream \
+	clean-targets initEnv sw-build sw-rebuild sw-load sw-flash-zed
+
