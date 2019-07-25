@@ -1,5 +1,5 @@
 set projName [lindex $argv 0]
-set bitString _system_top.bit
+set bitString _wrapper.bit
 set projNameBit $projName$bitString
 
 setws .
